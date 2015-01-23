@@ -9,15 +9,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class SpriteSheet {
     public Texture spriteSheet;
     public TextureRegion[] spriteFrames;
-    public Animation animation;
 
 
 
-    public SpriteSheet(){
+    public SpriteSheet(String pathToFile, int width, int height){
 
-        spriteSheet = new Texture(Gdx.files.internal("img/aliens.png"));
+        spriteSheet = new Texture(Gdx.files.internal(pathToFile));
 
-        TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, 70, 100);
+        TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, width, height);
 
         int counter = 0;
 
@@ -38,15 +37,27 @@ public class SpriteSheet {
         }
 
     }
-    public Animation createAnimation(){
-        TextureRegion[] animationFrames = new TextureRegion[2];
-        animationFrames[0] = spriteFrames[9];
-        animationFrames[1] = spriteFrames[10];
-        animation = new Animation(0.4f, animationFrames);
-        return animation;
+    public Animation createAnimation(int startFrame, int lastFrame, float animationSpeed){
+        int counter = (lastFrame + 1) - startFrame;
+        TextureRegion[] animationFrames = new TextureRegion[counter];
+
+        for(int index = lastFrame; index >= startFrame; index--){
+            animationFrames[--counter] = spriteFrames[index];
+        }
+
+        return new Animation(animationSpeed, animationFrames);
 
     }
 
+    public Animation flipAnimation(Animation originalAnimation, boolean flipX, boolean flipY){
+        int frameCount = originalAnimation.getKeyFrames().length;
+        TextureRegion[] flippedFrames = new TextureRegion[frameCount];
+        for(int index = 0; index <= frameCount-1; index++){
+            flippedFrames[index]= new TextureRegion(originalAnimation.getKeyFrames()[index]);
+            flippedFrames[index].flip(flipX,flipY);
+        }
+        return new Animation(originalAnimation.getFrameDuration(),flippedFrames);
+    }
 }
 
 
