@@ -11,7 +11,7 @@ import com.solizj.platformer.controller.LevelController;
 
 import java.util.HashMap;
 
-public class Player extends Sprite{
+public class Player extends Sprite{ // [33] extends Sprite
 
     public Player(Vector2 position, int width, int height) {
         super(position, width, height);

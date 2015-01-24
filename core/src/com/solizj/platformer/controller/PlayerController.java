@@ -16,7 +16,7 @@ public class PlayerController {
 
     }
 
-    public static void draw(Batch spriteBatch){
+    public static void draw(Batch spriteBatch){ // [34]
         player.draw(spriteBatch);
     }
 }

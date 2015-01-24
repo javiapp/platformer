@@ -27,7 +27,7 @@ public class LevelController {
     public static void initializeController(){
         level = new Level("map/level01.tmx");
         renderer = new OrthogonalTiledMapRenderer(level.map,UNIT_SCALE);
-        gameWorld = new World(new Vector2(0,-10), true);
+        gameWorld = new World(new Vector2(0,0), true); // Vector2 of x,y Gravity
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 
@@ -49,16 +49,19 @@ public class LevelController {
         renderer.render();
         PlayerController.update(deltaTime);
         updateWorldBodies();
-        gameWorld.step(1/60f, 1, 1);
+        gameWorld.step(1/60f, 1, 1);  //[32] updates 60 times /sec , velIter=1, acelIter=1
     }
 
-    private static void updateWorldBodies(){
+    private static void updateWorldBodies(){  // [32] Update the bodies in gameworld and attach body positions to sprites
         worldBodies.clear();
         gameWorld.getBodies(worldBodies);
 
         for(Body body : worldBodies){
-            Sprite spriteBody = (Sprite)body.getUserData();
-            spriteBody.position = body.getPosition();
+            Sprite spriteBody = (Sprite)body.getUserData(); // [32] Player class is all attached as User Data!! // [33] refactored to Sprite
+
+            if (spriteBody != null){  // [34] THIS WAS NOT IN THE VIDEO! if there's no userdata in a body (no sprite associated, skip)
+                spriteBody.position = body.getPosition();
+            }
         }
     }
 }

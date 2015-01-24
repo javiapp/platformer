@@ -7,7 +7,7 @@ import com.solizj.platformer.controller.LevelController;
 
 import java.util.HashMap;
 
-public class Sprite {
+public class Sprite { // [33]
     public Vector2 position;
     public SpriteSheet spriteSheet;
     public float width;
@@ -32,6 +32,4 @@ public class Sprite {
     public void update(float deltaTime){
         stateTime += deltaTime;
     }
-
-
 }
