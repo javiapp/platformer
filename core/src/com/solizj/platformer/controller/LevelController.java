@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.solizj.platformer.model.Level;
-import com.solizj.platformer.model.Player;
 import com.solizj.platformer.model.Sprite;
 
 public class LevelController {

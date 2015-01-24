@@ -3,11 +3,13 @@ package com.solizj.platformer.model;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.solizj.platformer.controller.LevelController;
 
 import java.util.HashMap;
 
 public class Sprite { // [33]
+    public Body physicsBody;// [35]
     public Vector2 position;
     public SpriteSheet spriteSheet;
     public float width;
