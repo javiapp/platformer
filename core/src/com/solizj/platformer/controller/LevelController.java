@@ -1,12 +1,15 @@
 package com.solizj.platformer.controller;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.solizj.platformer.model.Bodies;
 import com.solizj.platformer.model.Level;
 import com.solizj.platformer.model.Sprite;
 
@@ -26,12 +29,12 @@ public class LevelController {
     public static void initializeController(){
         level = new Level("map/level01.tmx");
         renderer = new OrthogonalTiledMapRenderer(level.map,UNIT_SCALE);
-        gameWorld = new World(new Vector2(0,0), true); // Vector2 of x,y Gravity
+        gameWorld = new World(new Vector2(0,-10), true); // Vector2 of x,y Gravity
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 
         spriteBatch = renderer.getSpriteBatch();
-
+        createLevelBodies();
     }
 
 
@@ -62,5 +65,12 @@ public class LevelController {
                 spriteBody.position = body.getPosition();
             }
         }
+    }
+
+    private static void createLevelBodies(){ // [40] take each obj in collision layer and make
+        MapObjects mapObjects = level.getLayerObjects(level.getMapLayer("collision"));
+
+        for(MapObject mapObject : mapObjects)
+            Bodies.createBody(mapObject);
     }
 }
