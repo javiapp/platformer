@@ -15,20 +15,25 @@ public class Player extends Sprite{ // [33] extends Sprite
 
     public Player(Vector2 position, int width, int height) {
         super(position, width, height);
+
+        //create body definition to set type and position in world
         BodyDef bodyDefinition = new BodyDef();
         bodyDefinition.type = BodyDef.BodyType.DynamicBody;
         bodyDefinition.position.set(position);
 
+        //create it in game world
         physicsBody = LevelController.gameWorld.createBody(bodyDefinition);
         physicsBody.setUserData(this);
 
+        //create its shape
         PolygonShape rectangleShape = new PolygonShape();
         rectangleShape.setAsBox(this.width/2f,this.height/2f,new Vector2(this.width/2f,this.height/2f),0);
 
+        //create properties of the shape
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape =  rectangleShape;
 
-        // attach fixture to player body
+        // (attach these properties to the player) ie. attach fixture to player body
         physicsBody.createFixture(fixtureDefinition);
         rectangleShape.dispose();
 
