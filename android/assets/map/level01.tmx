@@ -10,8 +10,5 @@
  </layer>
  <objectgroup color="#ff0000" name="collision">
   <object id="1" name="ground" type="solid" x="0" y="630" width="1400" height="70"/>
-  <object id="2" name="hill" type="solid" x="490" y="630">
-   <polygon points="0,0 140,-140 490,-140 630,0 0,0"/>
-  </object>
  </objectgroup>
 </map>

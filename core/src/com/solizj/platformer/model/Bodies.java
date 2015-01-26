@@ -16,7 +16,7 @@ public class Bodies { // [39] New "factory" class to create bodies in Box2d
 
         if(bodyType.equalsIgnoreCase("solid")){ // if solid create box2d body
             // get rectangle object found in tile map
-            RectangleMapObject rectangleObject = (RectangleMapObject)mapObject;
+            RectangleMapObject rectangleObject = (RectangleMapObject)mapObject;//This is OK CHECK TILED
 
             // create box2d body based on that information
             BodyDef bodyDefinition = new BodyDef();
