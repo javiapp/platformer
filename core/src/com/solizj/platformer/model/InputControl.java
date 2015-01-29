@@ -2,6 +2,7 @@ package com.solizj.platformer.model;
 /**
  * To create input controls
  */
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -29,4 +30,6 @@ public class InputControl {
     public void draw(Batch spriteBatch){
         spriteBatch.draw(textureRegion, position.x, position.y, width * LevelController.UNIT_SCALE, heigth* LevelController.UNIT_SCALE);
     }
+
+
 }
