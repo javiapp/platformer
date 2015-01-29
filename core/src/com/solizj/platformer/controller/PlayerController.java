@@ -9,11 +9,17 @@ import com.solizj.platformer.model.Player;
 public class PlayerController {
     public static Player player;
 
+    //[50]
+    public static String movementAction;
+    public static String specialAction;
+
     private static final float VELOCITY = 1f;//[36] what to add when button pressed\
     private static final float MAX_VELOCITY = 5f;
 
     public static void initializeController(){
         player = new Player(new Vector2(2,10),70,100, "img/aliens.png");
+        movementAction = "";
+        specialAction = "";
     }
 
     public static void update(float deltaTime){
@@ -35,8 +41,11 @@ public class PlayerController {
             player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){  //
+        if(movementAction.equalsIgnoreCase("right")){  // movementAction in Inputcontroller
             player.physicsBody.applyLinearImpulse(VELOCITY, 0, position.x, position.y, true);
+        }
+        else if (movementAction.equalsIgnoreCase("left")){
+            player.physicsBody.applyLinearImpulse(-VELOCITY, 0, position.x, position.y, true);
         }
     }
 }
