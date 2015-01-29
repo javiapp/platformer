@@ -1,10 +1,11 @@
 package com.solizj.platformer.model;
 /**
- * Video 46
+ * To create input controls
  */
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.solizj.platformer.controller.LevelController;
 
 public class InputControl {
 
@@ -16,7 +17,7 @@ public class InputControl {
     private float width;
     private float heigth;
 
-    public void InputControl(Vector2 position, TextureRegion textureRegion, String action){
+    public  InputControl(Vector2 position, TextureRegion textureRegion, String action){
         this.textureRegion = textureRegion;
         this.position = position;
         this.action = action;
@@ -26,6 +27,6 @@ public class InputControl {
 
     }
     public void draw(Batch spriteBatch){
-        spriteBatch.draw(textureRegion, position.x, position.y, width, heigth);
+        spriteBatch.draw(textureRegion, position.x, position.y, width * LevelController.UNIT_SCALE, heigth* LevelController.UNIT_SCALE);
     }
 }

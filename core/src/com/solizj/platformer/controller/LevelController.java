@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.solizj.platformer.model.Bodies;
+import com.solizj.platformer.model.InputControl;
 import com.solizj.platformer.model.Level;
 import com.solizj.platformer.model.Sprite;
 
@@ -39,9 +40,13 @@ public class LevelController {
 
 
     public static void draw(){
+        // draw player
         spriteBatch.begin();
         PlayerController.draw(spriteBatch);
         spriteBatch.end();
+
+        //draw input control
+        InputController.draw(spriteBatch);
         debugRenderer.render(gameWorld,CameraController.camera.combined);
     }
 

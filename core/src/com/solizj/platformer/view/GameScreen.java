@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.solizj.platformer.controller.CameraController;
+import com.solizj.platformer.controller.InputController;
 import com.solizj.platformer.controller.LevelController;
 import com.solizj.platformer.controller.PlayerController;
 
@@ -14,6 +15,7 @@ public class GameScreen implements Screen{
         LevelController.initializeController();
         CameraController.initializedController();
         PlayerController.initializeController();
+        InputController.initializeControler();
     }
 
     @Override
