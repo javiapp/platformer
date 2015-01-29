@@ -18,11 +18,11 @@ public class Sprite { // [33]
     private float stateTime;
     protected HashMap<String,Animation> animations;
 
-    public Sprite(Vector2 position, int width, int height){
+    public Sprite(Vector2 position, int width, int height,String sheetPath){
         this.position = position;
         this.width = width * LevelController.UNIT_SCALE;
         this.height = height * LevelController.UNIT_SCALE;
-        spriteSheet = new SpriteSheet("img/aliens.png", width, height);
+        spriteSheet = new SpriteSheet(sheetPath, width, height);
         animations = new HashMap<String, Animation>();
         stateTime = 0f;
     }

@@ -13,8 +13,8 @@ import java.util.HashMap;
 
 public class Player extends Sprite{ // [33] extends Sprite
 
-    public Player(Vector2 position, int width, int height) {
-        super(position, width, height);
+    public Player(Vector2 position, int width, int height, String sheetPath) {
+        super(position, width, height, sheetPath);
 
         //create body definition to set type and position in world
         BodyDef bodyDefinition = new BodyDef();

@@ -13,7 +13,7 @@ public class PlayerController {
     private static final float MAX_VELOCITY = 5f;
 
     public static void initializeController(){
-        player = new Player(new Vector2(2,10),70,100);
+        player = new Player(new Vector2(2,10),70,100, "img/aliens.png");
     }
 
     public static void update(float deltaTime){
