@@ -61,7 +61,7 @@ public class LevelController {
         for(Body body : worldBodies){
             Sprite spriteBody = (Sprite)body.getUserData(); // [32] Player class is all attached as User Data!! // [33] refactored to Sprite
 
-            if (spriteBody != null){  // [34] THIS WAS NOT IN THE VIDEO! if there's no userdata in a body (no sprite associated, skip)
+            if (spriteBody != null){  // [34] THIS WAS NOT IN THE VIDEO! if there's no userdata in a body (no sprite associated, skip) // [43] Corrected and added to video
                 spriteBody.position = body.getPosition();
             }
         }
