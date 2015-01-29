@@ -1,6 +1,7 @@
 package com.solizj.platformer.model;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -36,5 +37,36 @@ public class Bodies { // [39] New "factory" class to create bodies in Box2d
             physicsBody.createFixture(fixtureDefinition);
             rectangleShape.dispose();
         }
+        else if (bodyType.equalsIgnoreCase("slope")){
+            PolygonMapObject polygonObject = (PolygonMapObject)mapObject;
+
+            //create body def
+            BodyDef bodyDefinition = new BodyDef();
+            bodyDefinition.type = BodyDef.BodyType.StaticBody;
+            bodyDefinition.position.set(polygonObject.getPolygon    ().getX()*LevelController.UNIT_SCALE, polygonObject.getPolygon().getY()*LevelController.UNIT_SCALE);
+
+            //create physics body
+            Body physicsBody = LevelController.gameWorld.createBody(bodyDefinition);
+            PolygonShape slopeShape = new PolygonShape();
+
+            // Transform Verticies in level map to game scale
+            float [] transformedVerticies = new float[6]; // 6 verticies = 3 points 2 coordinates per point (x,y)
+
+            for(int index=0; index < transformedVerticies.length; index++){
+                transformedVerticies[index] = polygonObject.getPolygon().getTransformedVertices()[index] * LevelController.UNIT_SCALE;
+            }
+
+            //create shape
+            slopeShape.set(transformedVerticies);
+
+            //Create Fixture
+            FixtureDef fixtureDefinition = new FixtureDef();
+            fixtureDefinition.shape = slopeShape;
+
+            // attach shape (fixture) to physics body
+            physicsBody.createFixture(fixtureDefinition);
+            slopeShape.dispose();
+        }
+
     }
 }
