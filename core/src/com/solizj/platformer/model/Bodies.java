@@ -53,7 +53,7 @@ public class Bodies { // [39] New "factory" class to create bodies in Box2d
             float [] transformedVerticies = new float[6]; // 6 verticies = 3 points 2 coordinates per point (x,y)
 
             for(int index=0; index < transformedVerticies.length; index++){
-                transformedVerticies[index] = polygonObject.getPolygon().getTransformedVertices()[index] * LevelController.UNIT_SCALE;
+                transformedVerticies[index] = polygonObject.getPolygon().getVertices()[index] * LevelController.UNIT_SCALE;
             }
 
             //create shape
