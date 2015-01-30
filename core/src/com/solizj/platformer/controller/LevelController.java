@@ -40,13 +40,17 @@ public class LevelController {
 
 
     public static void draw(){
+        // tell spriteBatch to use camera
+        spriteBatch.setProjectionMatrix(CameraController.camera.combined);
         // draw player
         spriteBatch.begin();
         PlayerController.draw(spriteBatch);
         spriteBatch.end();
 
-        //draw input control
+        //[52] switch to 'new' camera (for touch buttons)
+        spriteBatch.setProjectionMatrix(CameraController.inputCamera.combined);
         InputController.draw(spriteBatch);
+
         debugRenderer.render(gameWorld,CameraController.camera.combined);
     }
 
