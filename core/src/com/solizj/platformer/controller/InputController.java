@@ -31,8 +31,10 @@ public class InputController {
         return new InputAdapter(){
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                PlayerController.movementAction = "right";
-                return true;
+                if(left.getBoundingBox().contains(screenX,Gdx.graphics.getHeight() - screenY )) { //screenx,y assum origin upper left grame origina is loer left
+                    PlayerController.movementAction = "right";
+                }
+                    return true;
             }
 
             @Override
