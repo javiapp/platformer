@@ -18,6 +18,7 @@ public class InputController {
         spriteSheet = new SpriteSheet("img/touch-controls.png",80,80);
         left = new InputControl(new Vector2(0,0), spriteSheet.spriteFrames[0],"left");
         Gdx.input.setInputProcessor(createInputAdapter());
+
     }
 
     public static void draw(Batch spriteBatch){
