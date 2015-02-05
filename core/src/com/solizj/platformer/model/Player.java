@@ -28,14 +28,23 @@ public class Player extends Sprite{ // [33] extends Sprite
         //create its shape
         PolygonShape rectangleShape = new PolygonShape();
         rectangleShape.setAsBox(this.width/2f,this.height/2f,new Vector2(this.width/2f,this.height/2f),0);
+        //[55] create new smaller rectangle shape for player's feet
+        PolygonShape sensorShape = new PolygonShape();
+        sensorShape.setAsBox(this.width/4,this.height/32,new Vector2(this.width/2,0),0f);
 
         //create properties of the shape
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape =  rectangleShape;
+        //[55] create fixture for smaller foot rectangle
+        FixtureDef  fixtureDefinitionSensor = new FixtureDef(); // create definition
+        fixtureDefinitionSensor.shape = sensorShape; // attach to shape
 
+        fixtureDefinitionSensor.isSensor = true;// Sensor shapes don't register collisions
         // (attach these properties to the player) ie. attach fixture to player body
-        physicsBody.createFixture(fixtureDefinition);
+        physicsBody.createFixture(fixtureDefinition); // rectangle
+        physicsBody.createFixture(fixtureDefinitionSensor); //foot sensor
         rectangleShape.dispose();
+        sensorShape.dispose(); //foot sensor
 
 
 
