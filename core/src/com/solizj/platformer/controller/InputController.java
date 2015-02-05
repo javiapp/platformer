@@ -13,17 +13,25 @@ import com.solizj.platformer.model.SpriteSheet;
 public class InputController {
     private static SpriteSheet spriteSheet;
     private static InputControl left;
+    private static InputControl right;
+    private static InputControl up;
 
     public static void initializeControler(){
         spriteSheet = new SpriteSheet("img/touch-controls.png",80,80);
         left = new InputControl(new Vector2(0,0), spriteSheet.spriteFrames[0],"left");
+        right = new InputControl(new Vector2(2,0), spriteSheet.spriteFrames[1],"right");
+        up = new InputControl(new Vector2(12,0), spriteSheet.spriteFrames[2],"up");
+
         Gdx.input.setInputProcessor(createInputAdapter());
+
 
     }
 
     public static void draw(Batch spriteBatch){
         spriteBatch.begin();
         left.draw(spriteBatch);
+        right.draw(spriteBatch);
+        up.draw(spriteBatch);
         spriteBatch.end();
     }
 
@@ -33,7 +41,13 @@ public class InputController {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(left.getBoundingBox().contains(screenX,Gdx.graphics.getHeight() - screenY )) { //screenx,y assum origin upper left grame origina is loer left
+                    PlayerController.movementAction = "left";
+                }
+                if(right.getBoundingBox().contains(screenX,Gdx.graphics.getHeight() - screenY )) { //screenx,y assum origin upper left grame origina is loer left
                     PlayerController.movementAction = "right";
+                }
+                if(up.getBoundingBox().contains(screenX,Gdx.graphics.getHeight() - screenY )) { //screenx,y assum origin upper left grame origina is loer left
+                    PlayerController.movementAction = "up";
                 }
                     return true;
             }

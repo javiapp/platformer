@@ -51,7 +51,7 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0, position.x, position.y, true);
         }
 
-        if(movementAction.equalsIgnoreCase("jump") && PlayerController.grounded){
+        if(movementAction.equalsIgnoreCase("up") && PlayerController.grounded){
             player.physicsBody.applyLinearImpulse(0, VELOCITY, position.x, position.y, true);
             PlayerController.grounded=false;
         }
