@@ -13,6 +13,9 @@ public class PlayerController {
     public static String movementAction;
     public static String specialAction;
 
+    // [56] Allocate a variable for if your player is grounded (used in CollisionListener)
+    public static boolean grounded;
+
     private static final float VELOCITY = 1f;//[36] what to add when button pressed\
     private static final float MAX_VELOCITY = 5f;
 
@@ -46,6 +49,11 @@ public class PlayerController {
         }
         else if (movementAction.equalsIgnoreCase("left")){
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0, position.x, position.y, true);
+        }
+
+        if(movementAction.equalsIgnoreCase("jump") && PlayerController.grounded){
+            player.physicsBody.applyLinearImpulse(0, VELOCITY, position.x, position.y, true);
+            PlayerController.grounded=false;
         }
     }
 }
